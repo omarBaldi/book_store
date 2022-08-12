@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { ACTIONS } from '../../actions/book-actions';
 import useBooks from '../../provider/book-provider';
+import { Button } from '../button';
 import BookCardProps from './dto';
 
 const BookCard: FC<BookCardProps> = ({
@@ -36,9 +37,13 @@ const BookCard: FC<BookCardProps> = ({
       <p>Quantity: {stock_quantity}</p>
       <p>Category: {discount_set}</p>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <button onClick={handleIncrement}>Increment</button>
+        <Button cbFunc={handleIncrement}>
+          <p>Increment</p>
+        </Button>
         <p>{quantityChosen}</p>
-        <button onClick={handleDecrement}>Decrement</button>
+        <Button cbFunc={handleDecrement}>
+          <p>Decrement</p>
+        </Button>
       </div>
     </div>
   );
