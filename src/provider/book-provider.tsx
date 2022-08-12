@@ -1,11 +1,13 @@
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import axios, { AxiosError } from 'axios';
 import { BookContextI, InitialStateI } from './dto';
 import { DEFAULT_ERROR_MESSAGE } from '../constant';
 import { bookReducer } from '../reducers/book-reducer';
 import { ACTIONS } from '../actions/book-actions';
 
-const BookContext = createContext<BookContextI>({});
+const BookContext: React.Context<BookContextI> = createContext<BookContextI>(
+  {} as BookContextI
+);
 
 const initialState: InitialStateI = {
   loading: true,
@@ -48,3 +50,6 @@ export const BookProvider = ({ children }: { children: React.ReactNode }) => {
     </BookContext.Provider>
   );
 };
+
+const useBooks = () => useContext(BookContext);
+export default useBooks;
