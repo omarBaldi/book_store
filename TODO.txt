@@ -1,0 +1,21 @@
+# Book Store SPA
+
+Single Page Application consisting in 2 pages:
+
+    - PRODUCT PAGE: page meant for listing the products by calling the 
+    following API endpoint: https://frozen-wave-24832.herokuapp.com/items/
+
+    - BASKET PAGE: page meant for rendering the products that have been chosen by the user
+
+
+Technologies chosen:
+
+    - React
+    - Typescript
+    - SCSS modules
+    - Axios
+    - React Router DOM for dynamic routing
+    - Context API + useReducer (for a centralized state)
+    - Bootstrap grid only (to speeding up the design process)
+    
+
