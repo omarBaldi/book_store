@@ -1,5 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { BookCardProps } from '../../components/book-card';
+import { CategoryCard } from '../../components/category-card';
 import useBooks from '../../provider/book-provider';
 
 const CategoriesPage: FC<{}> = () => {
@@ -8,8 +9,6 @@ const CategoriesPage: FC<{}> = () => {
   } = useBooks();
 
   const categoriesData = useMemo(() => {
-    console.log('here!');
-
     return books.reduce(
       (
         acc: { [key: string]: number },
@@ -24,23 +23,29 @@ const CategoriesPage: FC<{}> = () => {
     );
   }, [books]);
 
+  const renderCategoryCard = (
+    [label, value]: [string, number],
+    index: number
+  ) => (
+    <CategoryCard
+      key={`${label}-#${index}`}
+      title={label}
+      totalItems={value}
+      additionalStyle={{ margin: '1rem 0.5rem' }}
+    />
+  );
+
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-      }}
-    >
-      {Object.entries(categoriesData).map(
-        ([label, totalItems], index: number) => {
-          return (
-            <div key={`${label}-#${index}`}>
-              <h3>{label}</h3>
-              <p>{totalItems} items</p>
-            </div>
-          );
-        }
-      )}
+    <div style={{ width: '100%' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+          gridTemplateRows: 'repeat(auto-fill, 250px)',
+        }}
+      >
+        {Object.entries(categoriesData).map(renderCategoryCard)}
+      </div>
     </div>
   );
 };
