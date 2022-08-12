@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { ACTIONS } from '../../actions/book-actions';
 import useBooks from '../../provider/book-provider';
+import { ACTIONS } from '../../actions/book-actions';
 import { Button } from '../button';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
+import { ReactComponent as MinusIcon } from '../../assets/icons/minus.svg';
 import BookCardProps from './dto';
 
 const BookCard: FC<BookCardProps> = ({
@@ -29,13 +31,20 @@ const BookCard: FC<BookCardProps> = ({
 
   return (
     <div style={{ margin: '1rem 1.5rem' }}>
+      <div>
+        <p style={{ margin: 0, marginBottom: '0.5rem' }}>{discount_set}</p>
+      </div>
       <div style={{ overflow: 'hidden', borderRadius: '10px' }}>
         <img src={image_url} alt='' loading='lazy' style={{ width: '100%' }} />
       </div>
-      <h3>Title: {title}</h3>
-      <p>Price: {price}</p>
-      <p>Quantity: {stock_quantity}</p>
-      <p>Category: {discount_set}</p>
+      <h3 style={{ margin: 0, marginBottom: '0.5rem' }}>{title}</h3>
+      <p style={{ margin: 0, marginBottom: '0.5rem' }}>
+        <span>$</span>
+        <span>{price}</span>
+      </p>
+      <p style={{ margin: 0, marginBottom: '0.5rem' }}>
+        Quantity: {stock_quantity}
+      </p>
       <div
         style={{
           display: 'flex',
@@ -44,18 +53,22 @@ const BookCard: FC<BookCardProps> = ({
       >
         <Button
           cbFunc={handleDecrement}
-          additionalStyle={{ marginRight: '1rem' }}
+          additionalStyle={{ marginRight: '1rem', flex: 1 }}
           disabled={quantityChosen <= 0}
         >
-          <p style={{ margin: 0 }}>-</p>
+          <p style={{ margin: 0 }}>
+            <MinusIcon />
+          </p>
         </Button>
-        <p>{quantityChosen}</p>
+        <p style={{ margin: 0 }}>{quantityChosen}</p>
         <Button
           cbFunc={handleIncrement}
-          additionalStyle={{ marginLeft: '1rem' }}
+          additionalStyle={{ marginLeft: '1rem', flex: 1 }}
           disabled={quantityChosen >= stock_quantity}
         >
-          <p style={{ margin: 0 }}>+</p>
+          <p style={{ margin: 0 }}>
+            <PlusIcon />
+          </p>
         </Button>
       </div>
     </div>
