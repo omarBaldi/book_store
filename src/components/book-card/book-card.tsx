@@ -28,7 +28,7 @@ const BookCard: FC<BookCardProps> = ({
   const quantityChosen = selectedBooks.get(id.toString()) ?? 0;
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{ margin: '1rem 1.5rem' }}>
       <div style={{ overflow: 'hidden', borderRadius: '10px' }}>
         <img src={image_url} alt='' loading='lazy' style={{ width: '100%' }} />
       </div>
@@ -43,19 +43,19 @@ const BookCard: FC<BookCardProps> = ({
         }}
       >
         <Button
-          cbFunc={handleIncrement}
-          additionalStyle={{ marginRight: '1rem' }}
-          disabled={quantityChosen >= stock_quantity}
-        >
-          <p style={{ margin: 0 }}>+</p>
-        </Button>
-        <p>{quantityChosen}</p>
-        <Button
           cbFunc={handleDecrement}
-          additionalStyle={{ marginLeft: '1rem' }}
+          additionalStyle={{ marginRight: '1rem' }}
           disabled={quantityChosen <= 0}
         >
           <p style={{ margin: 0 }}>-</p>
+        </Button>
+        <p>{quantityChosen}</p>
+        <Button
+          cbFunc={handleIncrement}
+          additionalStyle={{ marginLeft: '1rem' }}
+          disabled={quantityChosen >= stock_quantity}
+        >
+          <p style={{ margin: 0 }}>+</p>
         </Button>
       </div>
     </div>

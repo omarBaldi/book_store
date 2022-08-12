@@ -10,13 +10,23 @@ const ProductPage: FC<ProductPageProps> = ({
     state: { books },
   } = useBooks();
 
+  //TODO: use debounce for search
+  const handleInputChange = () => null;
+
+  /* const categories = () => {
+
+  }; */
+
   return (
-    <div>
-      <h1>{title}</h1>
+    <div style={{ width: '100%' }}>
+      <div style={{ margin: '0 1.5rem' }}>
+        <input type='text' placeholder='Search' onChange={handleInputChange} />
+      </div>
+      <h1 style={{ marginLeft: '1.5rem' }}>{title}</h1>
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
         }}
       >
         {books.map((book) => (
