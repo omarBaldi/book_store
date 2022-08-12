@@ -36,13 +36,26 @@ const BookCard: FC<BookCardProps> = ({
       <p>Price: {price}</p>
       <p>Quantity: {stock_quantity}</p>
       <p>Category: {discount_set}</p>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Button cbFunc={handleIncrement}>
-          <p>Increment</p>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Button
+          cbFunc={handleIncrement}
+          additionalStyle={{ marginRight: '1rem' }}
+          disabled={quantityChosen >= stock_quantity}
+        >
+          <p style={{ margin: 0 }}>+</p>
         </Button>
         <p>{quantityChosen}</p>
-        <Button cbFunc={handleDecrement}>
-          <p>Decrement</p>
+        <Button
+          cbFunc={handleDecrement}
+          additionalStyle={{ marginLeft: '1rem' }}
+          disabled={quantityChosen <= 0}
+        >
+          <p style={{ margin: 0 }}>-</p>
         </Button>
       </div>
     </div>

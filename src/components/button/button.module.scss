@@ -1,0 +1,32 @@
+.buttonWrapper {
+  border: none;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &.smallSize {
+    padding: 0.5rem 1rem;
+  }
+
+  &.largeSize {
+    padding: 1.5rem 2rem;
+  }
+
+  &.buttonPrimary {
+    background-color: #1f75fe;
+    color: white;
+  }
+
+  &.buttonSecondary {
+    background-color: transparent;
+    border-color: #222;
+    color: #222;
+  }
+
+  &.disabled {
+    filter: opacity(0.2);
+    cursor: not-allowed;
+  }
+}

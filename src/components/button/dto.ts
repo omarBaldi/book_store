@@ -1,15 +1,16 @@
 export enum BUTTON_SIZES {
-  SMALL,
-  MEDIUM,
-  LARGE,
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
 }
 
 export enum BUTTON_CATEGORIES {
-  PRIMARY,
-  SECONDARY,
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
 }
 
 type ButtonProps = {
+  disabled?: boolean;
   category?: BUTTON_CATEGORIES;
   size?: BUTTON_SIZES;
   additionalStyle?: React.CSSProperties;
