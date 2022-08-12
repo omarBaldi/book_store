@@ -1,19 +1,11 @@
 import React from 'react';
 import { ActionType } from '../actions/book-actions';
-
-export interface BookI {
-  id: number;
-  image_url: string;
-  price: number;
-  stock_quantity: number;
-  title: string;
-  discount_set?: string;
-}
+import { BookCardProps } from '../components/book-card';
 
 export interface InitialStateI {
   loading: boolean;
   errorMessage: string;
-  data: BookI[];
+  data: BookCardProps[];
 }
 export interface BookContextI {
   state: InitialStateI;
