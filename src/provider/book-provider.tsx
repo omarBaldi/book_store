@@ -1,6 +1,9 @@
 import { createContext, useEffect, useReducer } from 'react';
 import axios, { AxiosError } from 'axios';
-import { BookContextI, InitialStateI, ActionType, ACTIONS } from './dto';
+import { BookContextI, InitialStateI } from './dto';
+import { DEFAULT_ERROR_MESSAGE } from '../constant';
+import { bookReducer } from '../reducers/book-reducer';
+import { ACTIONS } from '../actions/book-actions';
 
 const BookContext = createContext<BookContextI>({});
 
@@ -8,33 +11,6 @@ const initialState: InitialStateI = {
   loading: true,
   errorMessage: '',
   data: [],
-};
-
-const bookReducer = (state: InitialStateI, action: ActionType) => {
-  switch (action.type) {
-    case ACTIONS.SET_BOOKS_DATA: {
-      return {
-        ...state,
-        data: action.payload,
-      };
-    }
-    case ACTIONS.SET_ERROR_MESSAGE: {
-      return {
-        ...state,
-        errorMessage: action.message,
-      };
-    }
-    case ACTIONS.SET_LOADING_STATE: {
-      return {
-        ...state,
-        loading: action.value,
-      };
-    }
-
-    default: {
-      return state;
-    }
-  }
 };
 
 export const BookProvider = ({ children }: { children: React.ReactNode }) => {
@@ -51,9 +27,7 @@ export const BookProvider = ({ children }: { children: React.ReactNode }) => {
         dispatch({ type: ACTIONS.SET_BOOKS_DATA, payload: data });
       } catch (err: any) {
         const { message } = err as AxiosError;
-        //TODO: move the below message to constant file
-        const defaultMessage = 'An error occureed for following';
-        const errorMessage = message || defaultMessage;
+        const errorMessage = message || DEFAULT_ERROR_MESSAGE;
         dispatch({ type: ACTIONS.SET_ERROR_MESSAGE, message: errorMessage });
       } finally {
         dispatch({ type: ACTIONS.SET_LOADING_STATE, value: false });
