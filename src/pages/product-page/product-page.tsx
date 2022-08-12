@@ -7,7 +7,7 @@ const ProductPage: FC<ProductPageProps> = ({
   title = 'Catalog',
 }: ProductPageProps) => {
   const {
-    state: { data: books },
+    state: { books },
   } = useBooks();
 
   return (

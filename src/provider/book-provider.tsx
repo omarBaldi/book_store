@@ -12,7 +12,8 @@ const BookContext: React.Context<BookContextI> = createContext<BookContextI>(
 const initialState: InitialStateI = {
   loading: true,
   errorMessage: '',
-  data: [],
+  books: [],
+  selectedBooks: new Map(),
 };
 
 export const BookProvider = ({ children }: { children: React.ReactNode }) => {

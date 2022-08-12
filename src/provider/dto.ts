@@ -5,7 +5,8 @@ import { BookCardProps } from '../components/book-card';
 export interface InitialStateI {
   loading: boolean;
   errorMessage: string;
-  data: BookCardProps[];
+  books: BookCardProps[];
+  selectedBooks: Map<string, number | undefined>;
 }
 export interface BookContextI {
   state: InitialStateI;
