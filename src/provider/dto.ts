@@ -1,12 +1,27 @@
 export interface BookContextI {}
 
-export interface InitialStateI {}
-
-export enum Actions {
-  SET_BOOKS,
+export interface InitialStateI {
+  loading: boolean;
+  errorMessage: string;
+  data: any[];
 }
 
-export type ActionType = {
-  type: Actions.SET_BOOKS;
-  payload: any;
-};
+export enum ACTIONS {
+  SET_BOOKS_DATA,
+  SET_LOADING_STATE,
+  SET_ERROR_MESSAGE,
+}
+
+export type ActionType =
+  | {
+      type: ACTIONS.SET_BOOKS_DATA;
+      payload: any;
+    }
+  | {
+      type: ACTIONS.SET_LOADING_STATE;
+      value: boolean;
+    }
+  | {
+      type: ACTIONS.SET_ERROR_MESSAGE;
+      message: string;
+    };
