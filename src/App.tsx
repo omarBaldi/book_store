@@ -1,59 +1,21 @@
-import { useMemo } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-  useNavigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   BookIcon,
   CircleIcon,
   HomepageIcon,
   ShoppingCartIcon,
 } from './assets/icons';
-import { BookCard } from './components/book-card';
 import { Sidebar } from './components/sidebar';
 import { CategoriesPage } from './pages/categories-page';
 import { ProductPage } from './pages/product-page';
-import useBooks, { BookProvider } from './provider/book-provider';
+import { BookProvider } from './provider/book-provider';
 import './App.css';
+import { Button } from './components/button';
+import { CategoryPage } from './pages/category-page';
+import { GITHUB_PROJECT_URL } from './constant';
 
 const HomePage = () => {
   return <div>Homepage</div>;
-};
-
-const SpecificCategoryPage = () => {
-  const {
-    state: { books },
-  } = useBooks();
-  const { category: currentCategoryParam } = useParams();
-  const navigate = useNavigate();
-
-  const handleBackButtonClick = () => navigate(-1);
-
-  const elements = useMemo(() => {
-    const filteredBooks = books.filter(
-      (book) => book.discount_set === currentCategoryParam
-    );
-    return filteredBooks;
-  }, [currentCategoryParam, books]);
-
-  return (
-    <div style={{ width: '100%' }}>
-      <button onClick={handleBackButtonClick}>Go back</button>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        }}
-      >
-        {elements.map((book) => (
-          <BookCard key={book.id} {...book} />
-        ))}
-      </div>
-    </div>
-  );
 };
 
 /**
@@ -75,6 +37,11 @@ function App() {
               },
               { label: 'Basket', url: '/basket', icon: <ShoppingCartIcon /> },
             ]}
+            additionalContent={
+              <Button url={GITHUB_PROJECT_URL}>
+                <p>Link to github profile</p>
+              </Button>
+            }
           />
 
           <div style={{ backgroundColor: '#f2f2f2', width: '100%' }}>
@@ -82,10 +49,7 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/products' element={<ProductPage />} />
               <Route path='/categories' element={<CategoriesPage />} />
-              <Route
-                path='/categories/:category'
-                element={<SpecificCategoryPage />}
-              />
+              <Route path='/categories/:category' element={<CategoryPage />} />
             </Routes>
           </div>
         </div>
