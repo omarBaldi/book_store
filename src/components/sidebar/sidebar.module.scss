@@ -1,0 +1,60 @@
+$sidebar-min-width: 18rem;
+$link-icon-size: 20px;
+
+$sidebar-colors: (
+  link-bg-color: #f2f2f2,
+  active: #222,
+  non-active: #696464,
+);
+
+.sidebarWrapper {
+  min-width: $sidebar-min-width;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 1rem;
+
+  .sidebar {
+    height: 100%;
+
+    .linksWrapper {
+      .link {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0.8rem;
+        border-radius: 5px;
+        margin-bottom: 0.1rem;
+        cursor: pointer;
+
+        .iconWrapper {
+          svg {
+            height: $link-icon-size;
+            width: $link-icon-size;
+            stroke: map-get($map: $sidebar-colors, $key: non-active);
+          }
+          margin-right: 0.7rem;
+        }
+
+        .linkLabel {
+          text-decoration: none;
+          font-size: 1em;
+          color: map-get($map: $sidebar-colors, $key: non-active);
+        }
+
+        &:hover {
+          background-color: map-get($map: $sidebar-colors, $key: link-bg-color);
+
+          .iconWrapper,
+          svg {
+            stroke: map-get($map: $sidebar-colors, $key: active);
+          }
+
+          .linkLabel {
+            color: map-get($map: $sidebar-colors, $key: active);
+          }
+        }
+      }
+    }
+  }
+}

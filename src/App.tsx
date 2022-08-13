@@ -17,6 +17,7 @@ import { Sidebar } from './components/sidebar';
 import { CategoriesPage } from './pages/categories-page';
 import { ProductPage } from './pages/product-page';
 import useBooks, { BookProvider } from './provider/book-provider';
+import './App.css';
 
 const HomePage = () => {
   return <div>Homepage</div>;
@@ -57,7 +58,6 @@ const SpecificCategoryPage = () => {
 
 /**
  * TODO: replace hardcoded path strings with ts enum
- * TODO: create sidebar component
  */
 function App() {
   return (
@@ -77,15 +77,17 @@ function App() {
             ]}
           />
 
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/products' element={<ProductPage />} />
-            <Route path='/categories' element={<CategoriesPage />} />
-            <Route
-              path='/categories/:category'
-              element={<SpecificCategoryPage />}
-            />
-          </Routes>
+          <div style={{ backgroundColor: '#f2f2f2', width: '100%' }}>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/products' element={<ProductPage />} />
+              <Route path='/categories' element={<CategoriesPage />} />
+              <Route
+                path='/categories/:category'
+                element={<SpecificCategoryPage />}
+              />
+            </Routes>
+          </div>
         </div>
       </Router>
     </BookProvider>
