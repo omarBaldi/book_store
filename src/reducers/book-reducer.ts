@@ -41,18 +41,29 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
     case ACTIONS.DECREASE_BOOK_QUANTITY: {
       const { id: currentSelectedBookID } = action;
 
-      //TODO: might want to remove from map if value is less than 1
       const previousCurrentBookQuantity: number =
         state.selectedBooks.get(currentSelectedBookID.toString()) ?? 0;
 
+      /* 
+        If the previous selected quantity is equal to 1, that means with this operation
+        the quanity will be 0, therefore filter the map by removing the book id.
+      */
+
+      const updatedBooks =
+        previousCurrentBookQuantity <= 1
+          ? new Map(
+              [...state.selectedBooks].filter(
+                ([id, _]) => id !== currentSelectedBookID.toString()
+              )
+            )
+          : state.selectedBooks.set(
+              currentSelectedBookID.toString(),
+              previousCurrentBookQuantity - 1
+            );
+
       return {
         ...state,
-        selectedBooks: state.selectedBooks.set(
-          currentSelectedBookID.toString(),
-          previousCurrentBookQuantity > 0
-            ? previousCurrentBookQuantity - 1
-            : previousCurrentBookQuantity
-        ),
+        selectedBooks: updatedBooks,
       };
     }
     case ACTIONS.SET_BOOKS_DATA: {
