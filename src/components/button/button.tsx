@@ -4,8 +4,8 @@ import Styles from './button.module.scss';
 
 const Button: FC<ButtonProps> = ({
   disabled = false,
-  size = BUTTON_SIZES.SMALL,
-  category = BUTTON_CATEGORIES.SECONDARY,
+  size = BUTTON_SIZES.MEDIUM,
+  category = BUTTON_CATEGORIES.PRIMARY,
   additionalStyle = {},
   cbFunc,
   children,

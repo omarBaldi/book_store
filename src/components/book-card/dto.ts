@@ -5,6 +5,8 @@ type BookCardProps = {
   stock_quantity: number;
   title: string;
   discount_set: string;
+} & {
+  stockQuantityLabel?: string;
 };
 
 export default BookCardProps;

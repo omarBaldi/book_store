@@ -22,7 +22,6 @@ const ProductPage: FC<ProductPageProps> = ({
       <div style={{ margin: '0 1.5rem' }}>
         <input type='text' placeholder='Search' onChange={handleInputChange} />
       </div>
-      <h1 style={{ marginLeft: '1.5rem' }}>{title}</h1>
       <div
         style={{
           display: 'grid',

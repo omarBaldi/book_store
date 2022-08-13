@@ -9,6 +9,7 @@ export enum BUTTON_CATEGORIES {
   SECONDARY = 'secondary',
 }
 
+//TODO: { cbFunc?: () => void } | { url: string }
 type ButtonProps = {
   disabled?: boolean;
   category?: BUTTON_CATEGORIES;

@@ -3,7 +3,7 @@ $link-icon-size: 20px;
 
 $sidebar-colors: (
   link-bg-color: #f2f2f2,
-  active: #222,
+  active: #1f75fe,
   non-active: #696464,
 );
 
@@ -13,19 +13,30 @@ $sidebar-colors: (
   position: sticky;
   top: 0;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .sidebar {
-    height: 100%;
-
     .linksWrapper {
       .link {
         list-style: none;
         display: flex;
         align-items: center;
-        padding: 0.8rem;
+        padding: 1rem 0.5rem;
         border-radius: 5px;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.5rem;
         cursor: pointer;
+        position: relative;
+
+        &:before {
+          content: '';
+          position: absolute;
+          right: 0;
+          height: 100%;
+          width: 2px;
+          background-color: transparent;
+        }
 
         .iconWrapper {
           svg {
@@ -44,6 +55,10 @@ $sidebar-colors: (
 
         &:hover {
           background-color: map-get($map: $sidebar-colors, $key: link-bg-color);
+
+          &:before {
+            background-color: #1f75fe;
+          }
 
           .iconWrapper,
           svg {

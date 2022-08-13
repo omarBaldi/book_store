@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import useBooks from '../../provider/book-provider';
 import { ACTIONS } from '../../actions/book-actions';
 import { Button } from '../button';
+import { PlusIcon, MinusIcon } from '../../assets/icons';
 import BookCardProps from './dto';
 import Styles from './book-card.module.scss';
-import { PlusIcon, MinusIcon } from '../../assets/icons';
+import { BUTTON_CATEGORIES, BUTTON_SIZES } from '../button/dto';
 
 const BookCard: FC<BookCardProps> = ({
   id,
@@ -12,7 +13,8 @@ const BookCard: FC<BookCardProps> = ({
   price,
   stock_quantity,
   title,
-  discount_set = 'Other',
+  discount_set,
+  stockQuantityLabel = 'items left',
 }: BookCardProps) => {
   const {
     state: { selectedBooks },
@@ -30,31 +32,29 @@ const BookCard: FC<BookCardProps> = ({
   const quantityChosen = selectedBooks.get(id.toString()) ?? 0;
 
   return (
-    <div style={{ margin: '1rem 1.5rem' }} className={Styles.bookCardWrapper}>
+    <div style={{ margin: '1rem' }} className={Styles.bookCardWrapper}>
       {quantityChosen ? (
         <div className={Styles.quantityLeft}>{quantityChosen}</div>
       ) : (
         <></>
       )}
 
-      {/* <div>
-        <p style={{ margin: 0, marginBottom: '0.5rem' }}>{discount_set}</p>
-      </div> */}
-      <div
-        style={{
-          overflow: 'hidden',
-          borderRadius: '10px',
-          position: 'relative',
-        }}
-      >
-        <img src={image_url} alt='' loading='lazy' style={{ width: '100%' }} />
+      <div className={Styles.imageWrapper}>
+        <img src={image_url} alt='' loading='lazy' className={Styles.image} />
 
         <div className={Styles.buttonsWrapper}>
-          <Button cbFunc={handleDecrement} disabled={quantityChosen <= 0}>
+          <Button
+            category={BUTTON_CATEGORIES.SECONDARY}
+            size={BUTTON_SIZES.SMALL}
+            cbFunc={handleDecrement}
+            disabled={quantityChosen <= 0}
+          >
             <MinusIcon height={10} width={10} />
           </Button>
 
           <Button
+            category={BUTTON_CATEGORIES.SECONDARY}
+            size={BUTTON_SIZES.SMALL}
             cbFunc={handleIncrement}
             disabled={quantityChosen >= stock_quantity}
           >
@@ -62,14 +62,18 @@ const BookCard: FC<BookCardProps> = ({
           </Button>
         </div>
       </div>
-      <h3 style={{ margin: 0, marginBottom: '0.5rem' }}>{title}</h3>
-      <p style={{ margin: 0, marginBottom: '0.5rem' }}>
-        <span>$</span>
-        <span>{price}</span>
-      </p>
-      <p style={{ margin: 0, marginBottom: '0.5rem' }}>
-        Quantity: {stock_quantity}
-      </p>
+      <div className={Styles.cardTextWrapper}>
+        <h3 style={{ margin: 0, marginBottom: '0.5rem', fontWeight: 'bolder' }}>
+          {title}
+        </h3>
+        <p style={{ margin: 0, marginBottom: '0.5rem' }}>
+          <span>$</span>
+          <span>{price}</span>
+        </p>
+        <p style={{ margin: 0, marginBottom: '0.5rem' }}>
+          {`${stock_quantity - quantityChosen} ${stockQuantityLabel}`}
+        </p>
+      </div>
     </div>
   );
 };

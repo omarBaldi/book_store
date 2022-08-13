@@ -1,5 +1,18 @@
 .bookCardWrapper {
   position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+
+  .imageWrapper {
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+
+    .image {
+      width: 100%;
+    }
+  }
 
   .quantityLeft {
     position: absolute;
@@ -8,7 +21,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background-color: red;
+    background-color: #1f75fe;
     color: white;
     display: flex;
     justify-content: center;
@@ -31,5 +44,9 @@
     button:first-child {
       margin-bottom: 0.3rem;
     }
+  }
+
+  .cardTextWrapper {
+    margin: 1rem 0 0 0.3rem;
   }
 }
