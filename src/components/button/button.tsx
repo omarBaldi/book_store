@@ -2,6 +2,7 @@ import { FC, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonProps, { BUTTON_CATEGORIES, BUTTON_SIZES } from './dto';
 import Styles from './button.module.scss';
+import { isExternalLink } from '../../utils/regex';
 
 /**
  * TODO: check if url provided is external or internal
@@ -35,9 +36,22 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
       } ${disabled ? Styles.disabled : ''}`}
     >
       {'url' in props ? (
-        <Link to={props.url} target='_blank' className={Styles.buttonLink}>
-          {children}
-        </Link>
+        <>
+          {isExternalLink(props.url) ? (
+            <a
+              href={props.url}
+              target='_blank'
+              rel='noreferrer'
+              className={Styles.buttonLink}
+            >
+              {children}
+            </a>
+          ) : (
+            <Link to={props.url} target='_blank' className={Styles.buttonLink}>
+              {children}
+            </Link>
+          )}
+        </>
       ) : (
         children
       )}
