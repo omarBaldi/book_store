@@ -16,6 +16,8 @@ $sidebar-colors: (
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  //background-color: #212125;
+  background-color: #212125f8;
 
   .sidebar {
     .linksWrapper {
@@ -29,12 +31,16 @@ $sidebar-colors: (
         cursor: pointer;
         position: relative;
 
+        &.active {
+          border: 1px solid red;
+        }
+
         &:before {
           content: '';
           position: absolute;
           right: 0;
           height: 100%;
-          width: 2px;
+          width: 3px;
           background-color: transparent;
         }
 
@@ -48,13 +54,14 @@ $sidebar-colors: (
         }
 
         .linkLabel {
-          text-decoration: none;
           font-size: 1em;
           color: map-get($map: $sidebar-colors, $key: non-active);
         }
 
-        &:hover {
-          background-color: map-get($map: $sidebar-colors, $key: link-bg-color);
+        &:hover,
+        &.activeLink {
+          //background-color: map-get($map: $sidebar-colors, $key: link-bg-color);
+          background-color: #393e46;
 
           &:before {
             background-color: #1f75fe;
@@ -62,11 +69,13 @@ $sidebar-colors: (
 
           .iconWrapper,
           svg {
-            stroke: map-get($map: $sidebar-colors, $key: active);
+            //stroke: map-get($map: $sidebar-colors, $key: active);
+            stroke: white;
           }
 
           .linkLabel {
-            color: map-get($map: $sidebar-colors, $key: active);
+            //color: map-get($map: $sidebar-colors, $key: active);
+            color: white;
           }
         }
       }
