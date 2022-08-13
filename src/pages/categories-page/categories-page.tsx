@@ -12,7 +12,7 @@ const CategoriesPage: FC<{}> = () => {
     return books.reduce(
       (
         acc: { [key: string]: number },
-        { discount_set = 'other' }: Pick<BookCardProps, 'discount_set'>
+        { discount_set }: Pick<BookCardProps, 'discount_set'>
       ) => {
         return {
           ...acc,
@@ -40,8 +40,7 @@ const CategoriesPage: FC<{}> = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-          gridTemplateRows: 'repeat(auto-fill, 250px)',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
         }}
       >
         {Object.entries(categoriesData).map(renderCategoryCard)}
