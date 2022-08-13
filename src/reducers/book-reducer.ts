@@ -69,9 +69,16 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
     case ACTIONS.SET_BOOKS_DATA: {
       const key: keyof InitialStateI = 'books';
 
+      const { payload: books } = action;
+
+      const updatedBooks = books.map((book) => ({
+        ...book,
+        discount_set: book.discount_set || 'other',
+      }));
+
       return {
         ...state,
-        [key]: action.payload,
+        [key]: updatedBooks,
       };
     }
     case ACTIONS.SET_ERROR_MESSAGE: {
