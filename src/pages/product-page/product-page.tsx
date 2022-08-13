@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { BookCard } from '../../components/book-card';
 import useBooks from '../../provider/book-provider';
 import { ProductPageProps } from './dto';
+import Styles from './product-page.module.scss';
 
 const ProductPage: FC<ProductPageProps> = ({
   title = 'Catalog',
@@ -10,17 +11,25 @@ const ProductPage: FC<ProductPageProps> = ({
     state: { books },
   } = useBooks();
 
-  //TODO: use debounce for search
-  const handleInputChange = () => null;
+  const debounce = (cbFunc: (args: any) => void, ms: number) => {
+    let timeout: NodeJS.Timeout;
 
-  /* const categories = () => {
+    return (...args: any) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => cbFunc(args), ms);
+    };
+  };
 
-  }; */
+  const executeSearch = () => console.log('here!');
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={Styles.productPage}>
       <div style={{ margin: '0 1.5rem' }}>
-        <input type='text' placeholder='Search' onChange={handleInputChange} />
+        <input
+          type='text'
+          placeholder='Search'
+          onChange={debounce(executeSearch, 1000)}
+        />
       </div>
       <div
         style={{
