@@ -24,13 +24,13 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     children,
   } = props;
 
-  const handleButtonClick = () => ('cbFunc' in props ? props.cbFunc : null);
+  const handleButtonClick = () => ('cbFunc' in props ? props.cbFunc() : null);
 
   return (
     <button
       disabled={disabled}
       onClick={handleButtonClick}
-      style={{ ...(additionalStyle ?? {}) }}
+      style={{ ...additionalStyle }}
       className={`${Styles.buttonWrapper} ${buttonStyles[size]} ${
         buttonStyles[category]
       } ${disabled ? Styles.disabled : ''}`}
