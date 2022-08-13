@@ -4,7 +4,7 @@ type BookCardProps = {
   price: number;
   stock_quantity: number;
   title: string;
-  discount_set?: string;
+  discount_set: string;
 };
 
 export default BookCardProps;

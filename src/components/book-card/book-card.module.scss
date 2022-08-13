@@ -1,0 +1,35 @@
+.bookCardWrapper {
+  position: relative;
+
+  .quantityLeft {
+    position: absolute;
+    top: -1rem;
+    right: -0.5rem;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    p {
+      font-size: 1.3em;
+      font-weight: bolder;
+    }
+  }
+
+  .buttonsWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 1rem;
+    right: 0.5rem;
+
+    button:first-child {
+      margin-bottom: 0.3rem;
+    }
+  }
+}
