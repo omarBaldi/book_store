@@ -1,18 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BookProvider } from './provider/book-provider';
+import { BasketPage, CategoriesPage, CategoryPage, ProductPage } from './pages';
+import { Sidebar } from './components/sidebar';
+import { Button } from './components/button';
+import { GITHUB_PROJECT_URL } from './constant';
 import {
   BookIcon,
   CircleIcon,
   HomepageIcon,
   ShoppingCartIcon,
 } from './assets/icons';
-import { Sidebar } from './components/sidebar';
-import { CategoriesPage } from './pages/categories-page';
-import { ProductPage } from './pages/product-page';
-import { BookProvider } from './provider/book-provider';
 import './App.css';
-import { Button } from './components/button';
-import { CategoryPage } from './pages/category-page';
-import { GITHUB_PROJECT_URL } from './constant';
 
 const HomePage = () => {
   return <div>Homepage</div>;
@@ -20,6 +18,10 @@ const HomePage = () => {
 
 /**
  * TODO: replace hardcoded path strings with ts enum
+ * TODO: implement debounce functionality for search
+ * TODO: apply style to input box component
+ * TODO: split components in atoms, molecules, organisms
+ * TODO: remove from map if quantity is 0
  */
 function App() {
   return (
@@ -50,6 +52,7 @@ function App() {
               <Route path='/products' element={<ProductPage />} />
               <Route path='/categories' element={<CategoriesPage />} />
               <Route path='/categories/:category' element={<CategoryPage />} />
+              <Route path='/basket' element={<BasketPage />} />
             </Routes>
           </div>
         </div>
