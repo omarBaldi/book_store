@@ -32,19 +32,23 @@ const CheckoutCard: FC<CheckoutCardProps> = ({
     };
   }, [subTotalValue, discountValue]);
 
+  const getLabelWithValuta = (label: string, valuta = '$'): string => {
+    return `${valuta} ${label}`;
+  };
+
   return (
     <div className={Styles.checkoutCard}>
       <CheckoutRow>
         <>
           <h3>{subTotalLabel}</h3>
-          <p>{getPriceWithDecimals(subTotalValue, 2)}</p>
+          <p>{getLabelWithValuta(getPriceWithDecimals(subTotalValue, 2))}</p>
         </>
       </CheckoutRow>
 
       <CheckoutRow>
         <>
           <h3>{`${discountLabel} ${discountValue.toString()} %`}</h3>
-          <p>{getPriceWithDecimals(priceDiscount, 2)}</p>
+          <p>{getLabelWithValuta(getPriceWithDecimals(priceDiscount, 2))}</p>
         </>
       </CheckoutRow>
 
@@ -53,7 +57,7 @@ const CheckoutCard: FC<CheckoutCardProps> = ({
       <CheckoutRow>
         <>
           <h3>{totalLabel}</h3>
-          <p>{getPriceWithDecimals(total, 2)}</p>
+          <p>{getLabelWithValuta(getPriceWithDecimals(total, 2))}</p>
         </>
       </CheckoutRow>
     </div>
