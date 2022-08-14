@@ -13,11 +13,11 @@ const ErrorPage: FC<ErrorPageProps> = ({
 
   return (
     <div className={Styles.errorPage}>
-      <div>
+      <div className={Styles.content}>
         <h1 className={Styles.title}>{title}</h1>
         <Button
           cbFunc={handleButtonClick}
-          additionalStyle={{ marginTop: '1rem' }}
+          additionalStyle={{ marginTop: '1rem', width: 'auto' }}
         >
           <p>{buttonLabel}</p>
         </Button>
