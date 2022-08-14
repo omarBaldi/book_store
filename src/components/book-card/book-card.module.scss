@@ -1,8 +1,9 @@
 .bookCardWrapper {
   position: relative;
-  background-color: white;
   border-radius: 5px;
   padding: 1rem;
+  background-color: #222;
+  color: white;
 
   .imageWrapper {
     overflow: hidden;
@@ -48,5 +49,23 @@
 
   .cardTextWrapper {
     margin: 1rem 0 0 0.3rem;
+
+    .textFirstRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .bookTitle {
+        margin-bottom: 0.5rem;
+        font-weight: 'bolder';
+      }
+
+      .bookCategory {
+        padding: 0.3rem 1rem;
+        border-radius: 10px;
+        border: 2px solid #1f75fe;
+        color: #1f75fe;
+      }
+    }
   }
 }

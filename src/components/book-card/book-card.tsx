@@ -13,8 +13,9 @@ const BookCard: FC<BookCardProps> = ({
   price,
   stock_quantity,
   title,
-  discount_set,
   stockQuantityLabel = 'items left',
+  discount_set,
+  additionalStyle = {},
 }: BookCardProps) => {
   const {
     state: { selectedBooks },
@@ -32,7 +33,7 @@ const BookCard: FC<BookCardProps> = ({
   const quantityChosen = selectedBooks.get(id.toString()) ?? 0;
 
   return (
-    <div style={{ margin: '1rem' }} className={Styles.bookCardWrapper}>
+    <div className={Styles.bookCardWrapper} style={{ ...additionalStyle }}>
       {quantityChosen ? (
         <div className={Styles.quantityLeft}>{quantityChosen}</div>
       ) : (
@@ -63,9 +64,10 @@ const BookCard: FC<BookCardProps> = ({
         </div>
       </div>
       <div className={Styles.cardTextWrapper}>
-        <h3 style={{ margin: 0, marginBottom: '0.5rem', fontWeight: 'bolder' }}>
-          {title}
-        </h3>
+        <div className={Styles.textFirstRow}>
+          <h3 className={Styles.bookTitle}>{title}</h3>
+          <p className={Styles.bookCategory}>{discount_set}</p>
+        </div>
         <p style={{ margin: 0, marginBottom: '0.5rem' }}>
           <span>$</span>
           <span>{price}</span>

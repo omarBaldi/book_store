@@ -58,7 +58,11 @@ const ProductPage: FC<ProductPageProps> = ({
         }}
       >
         {filteredBooks.map((book) => (
-          <BookCard key={book.id} {...book} />
+          <BookCard
+            key={book.id}
+            {...book}
+            additionalStyle={{ margin: '1rem' }}
+          />
         ))}
       </div>
     </div>

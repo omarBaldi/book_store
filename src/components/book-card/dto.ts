@@ -5,6 +5,7 @@ type BookCardProps = {
   stock_quantity: number;
   title: string;
   discount_set: string;
+  additionalStyle?: React.CSSProperties;
 } & {
   stockQuantityLabel?: string;
 };
