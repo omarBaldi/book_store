@@ -1,18 +1,23 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useRef } from 'react';
 import { BookCardProps } from '../../components/book-card';
 import { CheckoutCard } from '../../components/checkout-card';
 import {
   ShoppingCard,
   ShoppingCardProps,
 } from '../../components/shopping-card';
+import { AUGUST_MONTH_INDEX, DISCOUNT_PERCENTAGE_AUGUST } from '../../constant';
 import useBooks from '../../provider/book-provider';
+
+const TODAY = new Date();
 
 const BasketPage: FC<{}> = () => {
   const {
     state: { books, selectedBooks },
   } = useBooks();
 
-  //const discount = useRef<boolean>(false).current;
+  const applyDiscount = useRef<boolean>(
+    TODAY.getMonth() === AUGUST_MONTH_INDEX && TODAY.getDate() === 1
+  ).current;
 
   const { productsChosen, totalCheckoutAmount } = useMemo(() => {
     let totalCheckoutAmount: number = 0;
@@ -66,8 +71,7 @@ const BasketPage: FC<{}> = () => {
 
       <CheckoutCard
         subTotalValue={totalCheckoutAmount}
-        //TODO: apply 20 only if 1st of august
-        discountValue={20}
+        discountValue={applyDiscount ? DISCOUNT_PERCENTAGE_AUGUST : 0}
       />
     </div>
   );

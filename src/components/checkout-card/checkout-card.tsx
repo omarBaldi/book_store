@@ -47,7 +47,11 @@ const CheckoutCard: FC<CheckoutCardProps> = ({
 
       <CheckoutRow>
         <>
-          <h3>{`${discountLabel} ${discountValue.toString()} %`}</h3>
+          <h3>
+            {discountValue > 0
+              ? `${discountLabel} ${discountValue.toString()} %`
+              : 'No discount available'}
+          </h3>
           <p>{getLabelWithValuta(getPriceWithDecimals(priceDiscount, 2))}</p>
         </>
       </CheckoutRow>
