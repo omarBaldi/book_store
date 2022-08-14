@@ -3,9 +3,13 @@ import {
   getDiscountPrice,
   getPriceAfterDiscount,
   getPriceWithDecimals,
-} from '../../utils/percentage';
+} from '../../utils/checkout-fn';
 import CheckoutCardProps from './dto';
 import Styles from './checkout-card.module.scss';
+
+const CheckoutRow = ({ children }: { children: React.ReactNode }) => {
+  return <div className={Styles.checkoutCardRow}>{children}</div>;
+};
 
 const CheckoutCard: FC<CheckoutCardProps> = ({
   subTotalLabel = 'SubTotal',
@@ -30,19 +34,28 @@ const CheckoutCard: FC<CheckoutCardProps> = ({
 
   return (
     <div className={Styles.checkoutCard}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>{subTotalLabel}</h3>
-        <p>{getPriceWithDecimals(subTotalValue, 2)}</p>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>{`${discountLabel} ${discountValue.toString()} %`}</h3>
-        <p>{getPriceWithDecimals(priceDiscount, 2)}</p>
-      </div>
-      <hr />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>{totalLabel}</h3>
-        <p>{getPriceWithDecimals(total, 2)}</p>
-      </div>
+      <CheckoutRow>
+        <>
+          <h3>{subTotalLabel}</h3>
+          <p>{getPriceWithDecimals(subTotalValue, 2)}</p>
+        </>
+      </CheckoutRow>
+
+      <CheckoutRow>
+        <>
+          <h3>{`${discountLabel} ${discountValue.toString()} %`}</h3>
+          <p>{getPriceWithDecimals(priceDiscount, 2)}</p>
+        </>
+      </CheckoutRow>
+
+      <hr className={Styles.divider} />
+
+      <CheckoutRow>
+        <>
+          <h3>{totalLabel}</h3>
+          <p>{getPriceWithDecimals(total, 2)}</p>
+        </>
+      </CheckoutRow>
     </div>
   );
 };

@@ -1,10 +1,23 @@
 .checkoutCard {
   min-width: 20rem;
-  background-color: white;
+  background-color: #222;
+  color: white;
   height: 100%;
   position: sticky;
   top: 0;
   margin-left: 1rem;
   border-radius: 5px;
   padding: 1rem;
+
+  .checkoutCardRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .divider {
+    border: none;
+    border: 1px solid #1f75fe;
+    margin-bottom: 1rem;
+  }
 }
