@@ -17,15 +17,15 @@ const ProductPage: FC<ProductPageProps> = ({
 
   const filterBooksBasedOnKeySearched = useCallback(
     (currentKey: string) => {
-      const newFilteredBooks = filteredBooks.filter((book) =>
-        book.title.includes(currentKey)
+      const keySearchedWithoutSpace = currentKey.trim();
+
+      const newFilteredBooks = filteredBooks.filter(({ title }) =>
+        title.toLowerCase().includes(keySearchedWithoutSpace.toLowerCase())
       );
 
-      setFilteredBooks((prevBooks) =>
-        !currentKey ? prevBooks : newFilteredBooks
-      );
+      setFilteredBooks(!currentKey ? books : newFilteredBooks);
     },
-    [filteredBooks]
+    [filteredBooks, books]
   );
 
   const handleInputChange = useCallback(
