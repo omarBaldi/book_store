@@ -20,13 +20,13 @@ const ProductPage: FC<ProductPageProps> = ({
     (currentKey: string) => {
       const keySearchedWithoutSpace = currentKey.trim();
 
-      const newFilteredBooks = filteredBooks.filter(({ title }) =>
+      const newFilteredBooks = books.filter(({ title }) =>
         title.toLowerCase().includes(keySearchedWithoutSpace.toLowerCase())
       );
 
       setFilteredBooks(!currentKey ? books : newFilteredBooks);
     },
-    [filteredBooks, books]
+    [books]
   );
 
   const handleInputChange = useCallback(
@@ -48,7 +48,7 @@ const ProductPage: FC<ProductPageProps> = ({
 
   return (
     <div className={Styles.productPage}>
-      <div style={{ margin: '0 1.5rem' }}>
+      <div style={{ margin: '1.5rem' }}>
         <InputBox value={currentWordSearched} cbFunc={handleInputChange} />
       </div>
       <div
