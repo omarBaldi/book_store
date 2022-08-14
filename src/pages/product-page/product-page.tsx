@@ -4,6 +4,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { BookCard, BookCardProps } from '../../components/book-card';
 import { ProductPageProps } from './dto';
 import Styles from './product-page.module.scss';
+import { InputBox } from '../../components/input-box';
 
 const ProductPage: FC<ProductPageProps> = ({
   title = 'Catalog',
@@ -48,12 +49,7 @@ const ProductPage: FC<ProductPageProps> = ({
   return (
     <div className={Styles.productPage}>
       <div style={{ margin: '0 1.5rem' }}>
-        <input
-          type='text'
-          placeholder='Search'
-          value={currentWordSearched}
-          onChange={handleInputChange}
-        />
+        <InputBox value={currentWordSearched} cbFunc={handleInputChange} />
       </div>
       <div
         style={{
