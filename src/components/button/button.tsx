@@ -47,7 +47,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
               {children}
             </a>
           ) : (
-            <Link to={props.url} target='_blank' className={Styles.buttonLink}>
+            <Link to={props.url} className={Styles.buttonLink}>
               {children}
             </Link>
           )}

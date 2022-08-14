@@ -1,15 +1,18 @@
+import { BookCardProps } from '../components/book-card';
+
 export enum ACTIONS {
   SET_BOOKS_DATA,
   SET_LOADING_STATE,
   SET_ERROR_MESSAGE,
   INCREASE_BOOK_QUANTITY,
   DECREASE_BOOK_QUANTITY,
+  DELETE_BOOK_SELECTED,
 }
 
 export type ActionType =
   | {
       type: ACTIONS.SET_BOOKS_DATA;
-      payload: any;
+      payload: BookCardProps[];
     }
   | {
       type: ACTIONS.SET_LOADING_STATE;
@@ -25,5 +28,9 @@ export type ActionType =
     }
   | {
       type: ACTIONS.DECREASE_BOOK_QUANTITY;
+      id: number;
+    }
+  | {
+      type: ACTIONS.DELETE_BOOK_SELECTED;
       id: number;
     };
