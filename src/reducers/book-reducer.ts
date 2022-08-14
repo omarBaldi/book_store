@@ -27,12 +27,14 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
 
         return {
           ...state,
-          selectedBooks: state.selectedBooks.set(
-            currentSelectedBookID.toString(),
-            previousCurrentBookQuantity < quantityAvailable
-              ? previousCurrentBookQuantity + 1
-              : previousCurrentBookQuantity
-          ),
+          selectedBooks: new Map([
+            ...state.selectedBooks.set(
+              currentSelectedBookID.toString(),
+              previousCurrentBookQuantity < quantityAvailable
+                ? previousCurrentBookQuantity + 1
+                : previousCurrentBookQuantity
+            ),
+          ]),
         };
       } else {
         return state;
@@ -51,10 +53,8 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
 
       const updatedBooks =
         previousCurrentBookQuantity <= 1
-          ? new Map(
-              [...state.selectedBooks].filter(
-                ([id, _]) => id !== currentSelectedBookID.toString()
-              )
+          ? [...state.selectedBooks].filter(
+              ([id, _]) => id !== currentSelectedBookID.toString()
             )
           : state.selectedBooks.set(
               currentSelectedBookID.toString(),
@@ -63,7 +63,7 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
 
       return {
         ...state,
-        selectedBooks: updatedBooks,
+        selectedBooks: new Map([...updatedBooks]),
       };
     }
     case ACTIONS.SET_BOOKS_DATA: {
