@@ -1,0 +1,9 @@
+.goBackButtonWrapper {
+  display: inline-flex;
+  padding: 1rem;
+}
+
+.categoryElementsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

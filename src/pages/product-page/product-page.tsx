@@ -7,7 +7,7 @@ import Styles from './product-page.module.scss';
 import { InputBox } from '../../components/input-box';
 
 const ProductPage: FC<ProductPageProps> = ({
-  title = 'Catalog',
+  additionalStyle = {},
 }: ProductPageProps) => {
   const {
     state: { books },
@@ -47,16 +47,11 @@ const ProductPage: FC<ProductPageProps> = ({
   }, [books]);
 
   return (
-    <div className={Styles.productPage}>
-      <div style={{ margin: '1.5rem' }}>
+    <div style={{ ...additionalStyle }}>
+      <div className={Styles.inputBoxWrapper}>
         <InputBox value={currentWordSearched} cbFunc={handleInputChange} />
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        }}
-      >
+      <div className={Styles.productsGrid}>
         {filteredBooks.map((book) => (
           <BookCard
             key={book.id}

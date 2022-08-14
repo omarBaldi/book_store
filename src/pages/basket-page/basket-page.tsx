@@ -7,10 +7,14 @@ import {
 } from '../../components/shopping-card';
 import { AUGUST_MONTH_INDEX, DISCOUNT_PERCENTAGE_AUGUST } from '../../constant';
 import useBooks from '../../provider/book-provider';
+import BasketPageProps from './dto';
+import Styles from './basket-page.module.scss';
 
 const TODAY = new Date();
 
-const BasketPage: FC<{}> = () => {
+const BasketPage: FC<BasketPageProps> = ({
+  additionalStyle = {},
+}: BasketPageProps) => {
   const {
     state: { books, selectedBooks },
   } = useBooks();
@@ -52,20 +56,12 @@ const BasketPage: FC<{}> = () => {
   }, [books, selectedBooks]);
 
   return (
-    <div
-      style={{
-        width: '100%',
-        padding: '1rem',
-        display: 'flex',
-      }}
-    >
-      <div style={{ flex: 1 }}>
+    <div className={Styles.basketPage} style={{ ...additionalStyle }}>
+      <div className={Styles.basketContent}>
         {productsChosen.length > 0 ? (
           productsChosen.map((pd) => <ShoppingCard key={pd.id} {...pd} />)
         ) : (
-          <>
-            <h1 style={{ color: 'white' }}>No product selected yet!</h1>
-          </>
+          <h1>The basket is empty</h1>
         )}
       </div>
 

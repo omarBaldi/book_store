@@ -1,9 +1,13 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { BookCardProps } from '../../components/book-card';
 import { CategoryCard } from '../../components/category-card';
 import useBooks from '../../provider/book-provider';
+import CategoriesPageProps from './dto';
+import Styles from './categories-page.module.scss';
 
-const CategoriesPage: FC<{}> = () => {
+const CategoriesPage: FC<CategoriesPageProps> = ({
+  additionalStyle = {},
+}: CategoriesPageProps) => {
   const {
     state: { books },
   } = useBooks();
@@ -24,25 +28,20 @@ const CategoriesPage: FC<{}> = () => {
   }, [books]);
 
   const renderCategoryCard = (
-    [label, value]: [string, number],
+    [label, totalItems]: [string, number],
     index: number
   ) => (
     <CategoryCard
       key={`${label}-#${index}`}
       title={label}
-      totalItems={value}
+      {...{ totalItems }}
       additionalStyle={{ margin: '1rem 0.5rem' }}
     />
   );
 
   return (
-    <div style={{ width: '100%' }}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-        }}
-      >
+    <div className={Styles.categoriesPage} style={{ ...additionalStyle }}>
+      <div className={Styles.categoriesGrid}>
         {Object.entries(categoriesData).map(renderCategoryCard)}
       </div>
     </div>

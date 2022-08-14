@@ -3,9 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { BookCard } from '../../components/book-card';
 import { Button } from '../../components/button';
 import useBooks from '../../provider/book-provider';
+import CategoryPageProps from './dto';
 import Styles from './category-page.module.scss';
 
-const CategoryPage: FC<{}> = () => {
+const CategoryPage: FC<CategoryPageProps> = ({
+  additionalStyle = {},
+}: CategoryPageProps) => {
   const {
     state: { books },
   } = useBooks();
@@ -22,18 +25,13 @@ const CategoryPage: FC<{}> = () => {
   }, [currentCategoryParam, books]);
 
   return (
-    <div style={{ width: '100%' }}>
-      <div style={{ display: 'inline-flex', padding: '1rem' }}>
+    <div style={{ ...additionalStyle }}>
+      <div className={Styles.goBackButtonWrapper}>
         <Button cbFunc={handleBackButtonClick}>
           <p>Go back</p>
         </Button>
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        }}
-      >
+      <div className={Styles.categoryElementsGrid}>
         {elements.map((book) => (
           <BookCard key={book.id} {...book} />
         ))}
