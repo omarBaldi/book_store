@@ -1,11 +1,11 @@
 import { FC, useMemo } from 'react';
 import { BookCardProps } from '../../components/book-card';
+import { CheckoutCard } from '../../components/checkout-card';
 import {
   ShoppingCard,
   ShoppingCardProps,
 } from '../../components/shopping-card';
 import useBooks from '../../provider/book-provider';
-import { getPriceAfterDiscount } from '../../utils/percentage';
 
 const BasketPage: FC<{}> = () => {
   const {
@@ -63,37 +63,12 @@ const BasketPage: FC<{}> = () => {
           </>
         )}
       </div>
-      <div
-        style={{
-          minWidth: '20rem',
-          backgroundColor: 'white',
-          height: '100%',
-          position: 'sticky',
-          top: 0,
-          marginLeft: '1rem',
-          borderRadius: '5px',
-          padding: '1rem',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h3>SubTotal</h3>
-          <p>{totalCheckoutAmount.toFixed(2)}</p>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h3>Discount 20%</h3>
-          <p>
-            {getPriceAfterDiscount({
-              price: totalCheckoutAmount,
-              discountPercentage: 20,
-            })}
-          </p>
-        </div>
-        <hr />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h3>Total</h3>
-          <p>{totalCheckoutAmount.toFixed(2)}</p>
-        </div>
-      </div>
+
+      <CheckoutCard
+        subTotalValue={totalCheckoutAmount}
+        //TODO: apply 20 only if 1st of august
+        discountValue={20}
+      />
     </div>
   );
 };
