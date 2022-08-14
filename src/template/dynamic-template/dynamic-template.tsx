@@ -1,34 +1,13 @@
 import React, { useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import useBooks from '../../provider/book-provider';
-import {
-  HomepageIcon,
-  BookIcon,
-  ArchiveIcon,
-  ShoppingCartIcon,
-} from '../../assets/icons';
+import { BookIcon, ArchiveIcon, ShoppingCartIcon } from '../../assets/icons';
 import { Button } from '../../components/button';
 import { Sidebar } from '../../components/sidebar';
 import { GITHUB_PROJECT_URL } from '../../constant';
-import {
-  ProductPage,
-  CategoriesPage,
-  CategoryPage,
-  BasketPage,
-  ErrorPage,
-  LoadingPage,
-} from '../../pages';
+import { ErrorPage, LoadingPage } from '../../pages';
 import Styles from './dynamic-template.module.scss';
-
-const HomePage = () => {
-  return (
-    <div>
-      <h1 style={{ fontSize: '8em', color: 'white' }}>
-        Buy your textbooks for the best price
-      </h1>
-    </div>
-  );
-};
+import { routes, ROUTES_PATH } from '../../routes';
 
 const DynamicTemplate = () => {
   const {
@@ -47,14 +26,17 @@ const DynamicTemplate = () => {
     <div className={Styles.dynamicTemplate}>
       <Sidebar
         links={[
-          { label: 'Home', url: '/', icon: <HomepageIcon /> },
-          { label: 'Products', url: '/products', icon: <BookIcon /> },
+          { label: 'Products', url: ROUTES_PATH.PRODUCTS, icon: <BookIcon /> },
           {
             label: 'Categories',
-            url: '/categories',
+            url: ROUTES_PATH.CATEGORIES,
             icon: <ArchiveIcon />,
           },
-          { label: 'Basket', url: '/basket', icon: <ShoppingCartIcon /> },
+          {
+            label: 'Basket',
+            url: ROUTES_PATH.BASKET,
+            icon: <ShoppingCartIcon />,
+          },
         ]}
         additionalContent={
           <Button url={GITHUB_PROJECT_URL}>
@@ -65,33 +47,14 @@ const DynamicTemplate = () => {
 
       <div className={Styles.routesWrapper}>
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route
-            path='/products'
-            element={
-              <ProductPage additionalStyle={{ ...commonPagesStyle.current }} />
-            }
-          />
-          <Route
-            path='/categories'
-            element={
-              <CategoriesPage
-                additionalStyle={{ ...commonPagesStyle.current }}
-              />
-            }
-          />
-          <Route
-            path='/categories/:category'
-            element={
-              <CategoryPage additionalStyle={{ ...commonPagesStyle.current }} />
-            }
-          />
-          <Route
-            path='/basket'
-            element={
-              <BasketPage additionalStyle={{ ...commonPagesStyle.current }} />
-            }
-          />
+          {routes.map(({ component: Element, path }) => (
+            <Route
+              {...{ path }}
+              element={
+                <Element additionalStyle={{ ...commonPagesStyle.current }} />
+              }
+            />
+          ))}
         </Routes>
       </div>
     </div>
