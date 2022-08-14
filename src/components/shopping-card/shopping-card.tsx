@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import useBooks from '../../provider/book-provider';
 import { ACTIONS } from '../../actions/book-actions';
 import { MinusIcon, PlusIcon } from '../../assets/icons';
-import useBooks from '../../provider/book-provider';
 import { Button } from '../button';
 import { BUTTON_CATEGORIES, BUTTON_SIZES } from '../button/dto';
 import ShoppingCardProps from './dto';
@@ -24,6 +24,10 @@ const ShoppingCard: FC<ShoppingCardProps> = ({
 
   const handleDecrement = (): void => {
     dispatch({ type: ACTIONS.DECREASE_BOOK_QUANTITY, id });
+  };
+
+  const deleteSelectedBook = (): void => {
+    dispatch({ type: ACTIONS.DELETE_BOOK_SELECTED, id });
   };
 
   return (
@@ -76,7 +80,7 @@ const ShoppingCard: FC<ShoppingCardProps> = ({
           </div>
 
           <div>
-            <Button cbFunc={() => null} size={BUTTON_SIZES.SMALL}>
+            <Button cbFunc={deleteSelectedBook} size={BUTTON_SIZES.SMALL}>
               <p>Delete</p>
             </Button>
           </div>

@@ -66,6 +66,18 @@ export const bookReducer = (state: InitialStateI, action: ActionType) => {
         selectedBooks: new Map([...updatedBooks]),
       };
     }
+    case ACTIONS.DELETE_BOOK_SELECTED: {
+      const { id: currentSelectedBookID } = action;
+
+      const updatedSelectedBooks = [...state.selectedBooks].filter(
+        ([id, _]) => id !== currentSelectedBookID.toString()
+      );
+
+      return {
+        ...state,
+        selectedBooks: new Map([...updatedSelectedBooks]),
+      };
+    }
     case ACTIONS.SET_BOOKS_DATA: {
       const key: keyof InitialStateI = 'books';
 
