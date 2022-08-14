@@ -1,6 +1,7 @@
-import { FC } from 'react';
-import { BookCard } from '../../components/book-card';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import useBooks from '../../provider/book-provider';
+import { useDebounce } from '../../hooks/useDebounce';
+import { BookCard, BookCardProps } from '../../components/book-card';
 import { ProductPageProps } from './dto';
 import Styles from './product-page.module.scss';
 
@@ -11,16 +12,38 @@ const ProductPage: FC<ProductPageProps> = ({
     state: { books },
   } = useBooks();
 
-  const debounce = (cbFunc: (args: any) => void, ms: number) => {
-    let timeout: NodeJS.Timeout;
+  const [currentWordSearched, setCurrentWordSearched] = useState<string>('');
+  const [filteredBooks, setFilteredBooks] = useState<BookCardProps[]>([]);
 
-    return (...args: any) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => cbFunc(args), ms);
-    };
-  };
+  const filterBooksBasedOnKeySearched = useCallback(
+    (currentKey: string) => {
+      const newFilteredBooks = filteredBooks.filter((book) =>
+        book.title.includes(currentKey)
+      );
 
-  const executeSearch = () => console.log('here!');
+      setFilteredBooks((prevBooks) =>
+        !currentKey ? prevBooks : newFilteredBooks
+      );
+    },
+    [filteredBooks]
+  );
+
+  const handleInputChange = useCallback(
+    ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      const currentWord = target.value;
+      setCurrentWordSearched(currentWord);
+    },
+    []
+  );
+
+  useDebounce({
+    value: currentWordSearched,
+    cbFunc: () => filterBooksBasedOnKeySearched(currentWordSearched),
+  });
+
+  useEffect(() => {
+    setFilteredBooks(books);
+  }, [books]);
 
   return (
     <div className={Styles.productPage}>
@@ -28,7 +51,8 @@ const ProductPage: FC<ProductPageProps> = ({
         <input
           type='text'
           placeholder='Search'
-          onChange={debounce(executeSearch, 1000)}
+          value={currentWordSearched}
+          onChange={handleInputChange}
         />
       </div>
       <div
@@ -37,7 +61,7 @@ const ProductPage: FC<ProductPageProps> = ({
           gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
         }}
       >
-        {books.map((book) => (
+        {filteredBooks.map((book) => (
           <BookCard key={book.id} {...book} />
         ))}
       </div>
