@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { BookContextI, InitialStateI } from './dto';
 import { DEFAULT_ERROR_MESSAGE } from '../constant';
 import { bookReducer } from '../reducers/book-reducer';
@@ -29,8 +29,13 @@ export const BookProvider = ({ children }: { children: React.ReactNode }) => {
 
         dispatch({ type: ACTIONS.SET_BOOKS_DATA, payload: data });
       } catch (err: any) {
-        const { message } = err as AxiosError;
-        const errorMessage = message || DEFAULT_ERROR_MESSAGE;
+        let errorMessage = DEFAULT_ERROR_MESSAGE;
+
+        if (axios.isAxiosError(err)) {
+          const { message: axiosErrorMessage } = err;
+          errorMessage = axiosErrorMessage;
+        }
+
         dispatch({ type: ACTIONS.SET_ERROR_MESSAGE, message: errorMessage });
       } finally {
         dispatch({ type: ACTIONS.SET_LOADING_STATE, value: false });
