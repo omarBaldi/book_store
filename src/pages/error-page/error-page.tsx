@@ -7,14 +7,15 @@ import Styles from './error-page.module.scss';
 const ErrorPage: FC<ErrorPageProps> = ({
   title,
   buttonLabel = 'Reload page',
+  additionalStyle = {},
 }: ErrorPageProps) => {
   const navigate = useNavigate();
   const handleButtonClick = () => navigate(0);
 
   return (
-    <div className={Styles.errorPage}>
+    <div className={Styles.errorPage} style={{ ...additionalStyle }}>
       <div className={Styles.content}>
-        <h1 className={Styles.title}>{title}</h1>
+        <h2 className={Styles.title}>{title}</h2>
         <Button
           cbFunc={handleButtonClick}
           additionalStyle={{ marginTop: '1rem', width: 'auto' }}

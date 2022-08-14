@@ -3,8 +3,8 @@ import LoadingSpinnerProps from './dto';
 import Styles from './loading-spinner.module.scss';
 
 const LoadingSpinner: FC<LoadingSpinnerProps> = ({
-  size = 100,
-  thickness = 7,
+  size = 60,
+  thickness = 2,
   additionalStyle = {},
 }: LoadingSpinnerProps) => {
   return (
