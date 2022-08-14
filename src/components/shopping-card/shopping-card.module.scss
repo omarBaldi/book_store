@@ -1,0 +1,71 @@
+.shoppingCard {
+  background-color: #222;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  width: 100%;
+
+  .imageWrapper {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    border-radius: 10px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 1rem;
+
+    .textFirstRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-size: 1.4em;
+        font-weight: bolder;
+        margin-bottom: 0.3rem;
+      }
+
+      span:not(:first-child) {
+        margin-left: 0.3rem;
+      }
+
+      .totalBookPriceLabel {
+        color: #1f75fe;
+        font-weight: bolder;
+        font-size: 1.3em;
+      }
+
+      .quantitySelectedLabel {
+        @extend .totalBookPriceLabel;
+      }
+    }
+
+    .textSecondRow {
+      .priceLabel {
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    .buttonsRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+
+      .buttonActionsWrapper {
+        display: flex;
+      }
+    }
+  }
+}
