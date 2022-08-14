@@ -2,12 +2,13 @@ $ff-icon-size: 20px;
 
 .categoryCardWrapper {
   height: auto;
-  background-color: white;
+  background-color: #222;
   border-radius: 10px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: white;
 
   .icon {
     stroke: #1f75fe;

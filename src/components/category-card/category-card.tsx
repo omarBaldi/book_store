@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CircleIcon } from '../../assets/icons';
+import { ArchiveIcon } from '../../assets/icons';
 import CategoryCardProps from './dto';
 import Styles from './category-card.module.scss';
 import { Button } from '../button';
@@ -19,7 +19,7 @@ const CategoryCard: FC<CategoryCardProps> = ({
   return (
     <div className={Styles.categoryCardWrapper} style={{ ...additionalStyle }}>
       <div>
-        <CircleIcon className={Styles.icon} />
+        <ArchiveIcon className={Styles.icon} />
         <h2 className={Styles.cardTitle}>{title}</h2>
         <p
           className={Styles.itemsLabel}
