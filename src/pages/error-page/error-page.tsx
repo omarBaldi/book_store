@@ -1,19 +1,25 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button';
 import ErrorPageProps from './dto';
 import Styles from './error-page.module.scss';
 
 const ErrorPage: FC<ErrorPageProps> = ({
   title,
-  buttonRedirectLabel = 'Back to homepage',
-  buttonRedirectUrl = '/',
+  buttonLabel = 'Reload page',
 }: ErrorPageProps) => {
+  const navigate = useNavigate();
+  const handleButtonClick = () => navigate(0);
+
   return (
     <div className={Styles.errorPage}>
       <div>
         <h1 className={Styles.title}>{title}</h1>
-        <Button url={buttonRedirectUrl} additionalStyle={{ marginTop: '1rem' }}>
-          <p>{buttonRedirectLabel}</p>
+        <Button
+          cbFunc={handleButtonClick}
+          additionalStyle={{ marginTop: '1rem' }}
+        >
+          <p>{buttonLabel}</p>
         </Button>
       </div>
     </div>

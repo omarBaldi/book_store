@@ -1,7 +1,6 @@
 type ErrorPageProps = {
-    title: string;
-    buttonRedirectUrl?: string;
-    buttonRedirectLabel?: string;
+  title: string;
+  buttonLabel?: string;
 };
 
 export default ErrorPageProps;
