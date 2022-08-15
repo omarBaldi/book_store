@@ -4,7 +4,7 @@ import { BookContextI, InitialStateI } from './dto';
 import { DEFAULT_ERROR_MESSAGE } from '../constant';
 import { bookReducer } from '../reducers/book-reducer';
 import { ACTIONS } from '../actions/book-actions';
-import { BookCardProps } from '../components/book-card';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const BookContext: React.Context<BookContextI> = createContext<BookContextI>(
   {} as BookContextI
@@ -20,19 +20,16 @@ const initialState: InitialStateI = {
 export const BookProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(bookReducer, initialState);
 
+  const [apiResponsesStorage, cacheResponseData] = useLocalStorage(
+    'apiResponses',
+    {}
+  );
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const apiResponsesStorage: string | null =
-          localStorage.getItem('apiResponses');
-
-        const parsedApiResponsesStorage: { [key: string]: BookCardProps[] } =
-          apiResponsesStorage ? JSON.parse(apiResponsesStorage) : {};
-
         const url = `${process.env.REACT_APP_BASE_API_URL}/items`;
-
-        const previouslyStoredResponse: BookCardProps[] | undefined =
-          parsedApiResponsesStorage[url];
+        const previouslyStoredResponse = apiResponsesStorage[url];
 
         /* 
           If the parsed storage value previously stored
@@ -43,7 +40,7 @@ export const BookProvider = ({ children }: { children: React.ReactNode }) => {
           console.log('GET STORAGE VALUE');
           dispatch({
             type: ACTIONS.SET_BOOKS_DATA,
-            payload: previouslyStoredResponse as BookCardProps[],
+            payload: previouslyStoredResponse,
           });
         } else {
           /* 
@@ -57,10 +54,7 @@ export const BookProvider = ({ children }: { children: React.ReactNode }) => {
           });
 
           dispatch({ type: ACTIONS.SET_BOOKS_DATA, payload: data });
-          localStorage.setItem(
-            'apiResponses',
-            JSON.stringify({ ...parsedApiResponsesStorage, [url]: data })
-          );
+          cacheResponseData({ ...apiResponsesStorage, [url]: data });
         }
       } catch (err: any) {
         let errorMessage = DEFAULT_ERROR_MESSAGE;
