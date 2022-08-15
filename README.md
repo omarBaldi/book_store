@@ -19,12 +19,12 @@ for subsequents app reloads.
 
 Depending on the API state I either display one of the following pages:
 
-    - Loading page ---> to warn the user that the API call is taking a bit long
-    - Error page ---> to let the user know something went wrong
-    - Content which consists in 3 different dynamic routes:
-        - Products page
-        - Basket page
-        - Categories page
+    Loading page ---> to warn the user that the API call is taking a bit long
+    Error page ---> to let the user know something went wrong
+    Content which consists in 3 different dynamic routes:
+        Products page
+        Basket page
+        Categories page
 
 I have also implemented a search debounce functionality (in the products page) that allows the
 user to search for specific items based on key typed inside the input-box after 1s.
