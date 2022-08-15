@@ -1,0 +1,9 @@
+export { ReactComponent as PlusIcon } from './icons/plus.svg';
+export { ReactComponent as MinusIcon } from './icons/minus.svg';
+export { ReactComponent as HomepageIcon } from './icons/home.svg';
+export { ReactComponent as BookIcon } from './icons/book.svg';
+export { ReactComponent as ShoppingCartIcon } from './icons/shopping-cart.svg';
+export { ReactComponent as SearchIcon } from './icons/search.svg';
+export { ReactComponent as ArchiveIcon } from './icons/archive.svg';
+export { ReactComponent as CloseIcon } from './icons/close.svg';
+export { ReactComponent as MenuIcon } from './icons/menu.svg';

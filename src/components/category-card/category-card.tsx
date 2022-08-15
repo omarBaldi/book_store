@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArchiveIcon } from '../../assets/icons';
+import { ArchiveIcon } from '../../assets';
 import CategoryCardProps from './dto';
 import Styles from './category-card.module.scss';
 import { Button } from '../button';

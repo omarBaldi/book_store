@@ -7,6 +7,7 @@ export type SidebarLinkProps = {
 
 type SidebarProps = {
   links: SidebarLinkProps[];
+  burgerMenuCbFunc: () => void;
   additionalContent?: React.ReactNode;
 };
 

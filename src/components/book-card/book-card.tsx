@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import useBooks from '../../provider/book-provider';
 import { ACTIONS } from '../../actions/book-actions';
 import { Button } from '../button';
-import { PlusIcon, MinusIcon } from '../../assets/icons';
+import { PlusIcon, MinusIcon } from '../../assets';
 import BookCardProps from './dto';
 import Styles from './book-card.module.scss';
 import { BUTTON_CATEGORIES, BUTTON_SIZES } from '../button/dto';

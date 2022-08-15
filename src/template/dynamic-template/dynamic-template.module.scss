@@ -1,5 +1,20 @@
+$menu-icon-size: 20px;
+
 .dynamicTemplate {
   display: flex;
+
+  .buttonMenuWrapper {
+    padding: 1rem 2.5rem;
+
+    .burgerIcon {
+      height: $menu-icon-size;
+      width: $menu-icon-size;
+    }
+
+    @media only screen and (min-width: 1024px) {
+      display: none;
+    }
+  }
 
   .routesWrapper {
     background-color: #131111;
@@ -17,13 +32,15 @@
       left: 0;
       right: 0;
       bottom: 0;
-      //background-color: rgba(0, 0, 0, 0.737);
+      background-color: rgba(0, 0, 0, 0.737);
       z-index: 10;
     }
 
     &.applyOverlay {
       &::before {
-        display: block;
+        @media only screen and (max-width: 1024px) {
+          display: block;
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { SearchIcon } from '../../assets/icons';
+import { SearchIcon } from '../../assets';
 import InputBoxProps, { INPUTBOX_TYPE } from './dto';
 import Styles from './input-box.module.scss';
 

@@ -1,5 +1,6 @@
 $sidebar-min-width: 18rem;
 $link-icon-size: 20px;
+$close-icon-size: 20px;
 
 $sidebar-colors: (
   link-bg-color: #f2f2f2,
@@ -8,20 +9,43 @@ $sidebar-colors: (
 );
 
 .sidebarWrapper {
-  min-width: $sidebar-min-width;
   height: 100vh;
-  position: sticky;
+  width: 100%;
+  position: fixed;
   top: 0;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #222;
+  z-index: 20;
+
+  @media only screen and (min-width: 1024px) {
+    position: sticky;
+  }
+
+  @media only screen and (min-width: 375px) {
+    max-width: $sidebar-min-width;
+  }
 
   .sidebar {
+    .closeMenuButtonWrapper {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: flex-end;
+
+      .closeIcon {
+        height: $close-icon-size;
+        width: $close-icon-size;
+      }
+
+      @media only screen and (min-width: 1024px) {
+        display: none;
+      }
+    }
+
     .linksWrapper {
       .link {
-        list-style: none;
         display: flex;
         align-items: center;
         padding: 1rem 0.5rem;
@@ -29,10 +53,6 @@ $sidebar-colors: (
         margin-bottom: 0.5rem;
         cursor: pointer;
         position: relative;
-
-        &.active {
-          border: 1px solid red;
-        }
 
         &:before {
           content: '';

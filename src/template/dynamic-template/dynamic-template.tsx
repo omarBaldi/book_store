@@ -1,17 +1,24 @@
 import React, { useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import useBooks from '../../provider/book-provider';
-import { BookIcon, ArchiveIcon, ShoppingCartIcon } from '../../assets/icons';
-import { Button } from '../../components/button';
-import { Sidebar } from '../../components/sidebar';
-import { GITHUB_PROJECT_URL } from '../../constant';
-import { ErrorPage, LoadingPage } from '../../pages';
-import { routes, ROUTES_PATH } from '../../routes';
-import Styles from './dynamic-template.module.scss';
 import {
   EVENT_LISTENERS,
   useEventListener,
 } from '../../hooks/useEventListener';
+import {
+  BookIcon,
+  ArchiveIcon,
+  ShoppingCartIcon,
+  MenuIcon,
+  CloseIcon,
+} from '../../assets';
+import { Button } from '../../components/button';
+import { Sidebar } from '../../components/sidebar';
+import { GITHUB_PROJECT_URL, LARGE_DEVICES_WIDTH } from '../../constant';
+import { ErrorPage, LoadingPage } from '../../pages';
+import { routes, ROUTES_PATH } from '../../routes';
+import { BUTTON_SIZES } from '../../components/button/dto';
+import Styles from './dynamic-template.module.scss';
 
 const DynamicTemplate = () => {
   const {
@@ -25,11 +32,13 @@ const DynamicTemplate = () => {
     minHeight: '100vh',
   });
 
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(
+    window.innerWidth >= LARGE_DEVICES_WIDTH
+  );
 
   const handleSidebarChange = (e: any) => {
     const currentWindowWidth = e.target.innerWidth;
-    setSidebarOpen(currentWindowWidth >= 1024);
+    setSidebarOpen(currentWindowWidth >= LARGE_DEVICES_WIDTH);
   };
 
   useEventListener({
@@ -87,8 +96,18 @@ const DynamicTemplate = () => {
           sidebarOpen ? Styles.applyOverlay : ''
         }`}
       >
-        <div onClick={() => setSidebarOpen((prevState) => !prevState)}>
-          <button>Open sidebar</button>
+        <div className={Styles.buttonMenuWrapper}>
+          <Button
+            size={BUTTON_SIZES.SMALL}
+            cbFunc={() => setSidebarOpen((prevState) => !prevState)}
+            additionalStyle={{ width: 'auto' }}
+          >
+            {sidebarOpen ? (
+              <CloseIcon className={Styles.burgerIcon} />
+            ) : (
+              <MenuIcon className={Styles.burgerIcon} />
+            )}
+          </Button>
         </div>
 
         <Routes>

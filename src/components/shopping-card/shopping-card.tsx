@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import useBooks from '../../provider/book-provider';
 import { ACTIONS } from '../../actions/book-actions';
-import { MinusIcon, PlusIcon } from '../../assets/icons';
+import { MinusIcon, PlusIcon } from '../../assets';
 import { Button } from '../button';
 import { BUTTON_CATEGORIES, BUTTON_SIZES } from '../button/dto';
 import ShoppingCardProps from './dto';
