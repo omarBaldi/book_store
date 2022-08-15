@@ -116,8 +116,8 @@ const DynamicTemplate = () => {
               key={`${path}-#${index}`}
               {...{ path }}
               element={
-                path === ROUTES_PATH.NOT_FOUND ? (
-                  <Navigate to={ROUTES_PATH.HOME} replace />
+                path === ROUTES_PATH.NOT_FOUND || path === ROUTES_PATH.HOME ? (
+                  <Navigate to={ROUTES_PATH.PRODUCTS} replace />
                 ) : (
                   <Element additionalStyle={commonPagesStyle.current} />
                 )
