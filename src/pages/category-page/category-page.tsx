@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BookCard } from '../../components/book-card';
 import { Button } from '../../components/button';
@@ -40,4 +40,4 @@ const CategoryPage: FC<CategoryPageProps> = ({
   );
 };
 
-export default CategoryPage;
+export default React.memo(CategoryPage);

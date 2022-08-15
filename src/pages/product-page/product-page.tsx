@@ -64,4 +64,4 @@ const ProductPage: FC<ProductPageProps> = ({
   );
 };
 
-export default ProductPage;
+export default React.memo(ProductPage);

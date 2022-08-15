@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef } from 'react';
+import React, { FC, useMemo, useRef } from 'react';
 import { BookCardProps } from '../../components/book-card';
 import { CheckoutCard } from '../../components/checkout-card';
 import {
@@ -73,4 +73,4 @@ const BasketPage: FC<BasketPageProps> = ({
   );
 };
 
-export default BasketPage;
+export default React.memo(BasketPage);

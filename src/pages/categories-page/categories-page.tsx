@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { BookCardProps } from '../../components/book-card';
 import { CategoryCard } from '../../components/category-card';
 import useBooks from '../../provider/book-provider';
@@ -48,4 +48,4 @@ const CategoriesPage: FC<CategoriesPageProps> = ({
   );
 };
 
-export default CategoriesPage;
+export default React.memo(CategoriesPage);
