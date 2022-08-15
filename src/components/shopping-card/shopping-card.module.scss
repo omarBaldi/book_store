@@ -29,9 +29,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
 
       .title {
-        font-size: 1.4em;
+        font-size: 1.3em;
         font-weight: bolder;
         margin-bottom: 0.3rem;
       }
@@ -43,7 +44,7 @@
       .totalBookPriceLabel {
         color: #1f75fe;
         font-weight: bolder;
-        font-size: 1.3em;
+        font-size: 1.2em;
       }
 
       .quantitySelectedLabel {

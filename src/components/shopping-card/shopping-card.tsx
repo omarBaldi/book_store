@@ -65,6 +65,7 @@ const ShoppingCard: FC<ShoppingCardProps> = ({
               category={BUTTON_CATEGORIES.SECONDARY}
               size={BUTTON_SIZES.SMALL}
               cbFunc={handleDecrement}
+              additionalStyle={{ marginRight: '0.3rem' }}
             >
               <MinusIcon height={10} width={10} />
             </Button>
