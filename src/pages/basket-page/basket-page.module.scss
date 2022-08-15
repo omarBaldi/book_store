@@ -1,8 +1,25 @@
 .basketPage {
   display: flex;
+  flex-direction: column-reverse;
   color: white;
+
+  .checkoutCardWrapper {
+    margin-bottom: 1rem;
+  }
 
   .basketContent {
     flex: 1;
+
+    .emptyBasketMessage {
+      text-align: center;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    flex-direction: row;
+
+    .basketContent .emptyBasketMessage {
+      text-align: start;
+    }
   }
 }

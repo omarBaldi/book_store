@@ -61,14 +61,16 @@ const BasketPage: FC<BasketPageProps> = ({
         {productsChosen.length > 0 ? (
           productsChosen.map((pd) => <ShoppingCard key={pd.id} {...pd} />)
         ) : (
-          <h1>The basket is empty</h1>
+          <h1 className={Styles.emptyBasketMessage}>The basket is empty</h1>
         )}
       </div>
 
-      <CheckoutCard
-        subTotalValue={totalCheckoutAmount}
-        discountValue={applyDiscount ? DISCOUNT_PERCENTAGE_AUGUST : 0}
-      />
+      <div className={Styles.checkoutCardWrapper}>
+        <CheckoutCard
+          subTotalValue={totalCheckoutAmount}
+          discountValue={applyDiscount ? DISCOUNT_PERCENTAGE_AUGUST : 0}
+        />
+      </div>
     </div>
   );
 };

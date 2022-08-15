@@ -43,7 +43,6 @@ const ShoppingCard: FC<ShoppingCardProps> = ({
             <span
               className={Styles.quantitySelectedLabel}
             >{`${quantitySelected}`}</span>
-            <span>items</span>
             <span>for</span>
             <span
               className={Styles.totalBookPriceLabel}

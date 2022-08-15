@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import useBooks from '../../provider/book-provider';
 import {
   EVENT_LISTENERS,
@@ -115,7 +115,13 @@ const DynamicTemplate = () => {
             <Route
               key={`${path}-#${index}`}
               {...{ path }}
-              element={<Element additionalStyle={commonPagesStyle.current} />}
+              element={
+                path === ROUTES_PATH.NOT_FOUND ? (
+                  <Navigate to={ROUTES_PATH.HOME} replace />
+                ) : (
+                  <Element additionalStyle={commonPagesStyle.current} />
+                )
+              }
             />
           ))}
         </Routes>
